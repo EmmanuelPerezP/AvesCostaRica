@@ -10,28 +10,60 @@ Para el html y el frontend se utliza django templates (incluido en django) y boo
 ### Prerequisitos
 
 Python 3
+Pip 
 
-```
-Give examples
-```
 
 ### Instalando
+Estas instrucciones son para linux-ubuntu pero la idea es la misma si se quiere ejecutar en otro OS solo hay que googlear las instrucciones
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Se instala python 3 si no se ha instalado
 
 ```
-until finished
+$ sudo apt install python3
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+luego se instala pip
+
+```
+$ sudo apt-get install python-pip python-dev build-essential 
+```
+
+Para poder editar el codigo y correrlo se necesita primero clonar el repositorio
+te vas a alguna carpeta en el cual clonarlo y ejecutas
+
+```
+$ git clone (url aqui)
+```
+despues se necesita crear un ambiente local de desarrollo
+
+```
+$ virtualenv env
+```
+
+Una vez creado lo activas
+
+```
+$ source env/bin/activate
+```
+
+luego para instalar los requerimientos de manera facil se ejecuta el comando
+
+```
+$ env/bin/pip install -r requirements.txt 
+```
+
+luego para ejecutar el debugging o ejectuar el proyecto solo entrar a la carpeta AvesCostaRica y correr
+
+```
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py runserver
+```
+
+Otros comandos ubicados en la documentacion de django
+
+https://docs.djangoproject.com/en/2.0/
+
 
 ### Coding style
 
@@ -47,13 +79,10 @@ Se utilizara nginx y gunicorn pero para debuggear y development no se necesita n
 * [Django](https://www.djangoproject.com/) - Web Framework
 * [PostgreSQL](https://www.postgresql.org/) - Base de Datos
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
 * **Emmanuel Perez** - *Initial work* - [EmmanuelPerezP](https://github.com/EmmanuelPerezP)
 
-agregar los demas
+** agregar los demas **
 

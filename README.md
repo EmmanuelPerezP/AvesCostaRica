@@ -1,20 +1,21 @@
-# Project Title
+# Aves de Costa Rica
 
-One Paragraph of project description goes here
+Administracion de Proyectos Tecnologico de Costa Rica
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Creado en Linux, se utiliza Django y PostgreSQL no es necesario saber el syntax de PostgreSQL ya que el ORM de Django se encarga de casi todo
+Para el html y el frontend se utliza django templates (incluido en django) y boostrap
 
-### Prerequisites
+### Prerequisitos
 
-What things you need to install the software and how to install them
+Python 3
 
 ```
 Give examples
 ```
 
-### Installing
+### Instalando
 
 A step by step series of examples that tell you have to get a development env running
 
@@ -32,56 +33,27 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+### Coding style
 
-Explain how to run the automated tests for this system
+Se trata de seguir PEP8 pero todo relax
 
-### Break down into end to end tests
+## Deploy
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Se utilizara nginx y gunicorn pero para debuggear y development no se necesita nada en especial, solo se le hace el comando de runserver
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Bootstrap](https://getbootstrap.com/) - CSS Framework
+* [Django](https://www.djangoproject.com/) - Web Framework
+* [PostgreSQL](https://www.postgresql.org/) - Base de Datos
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Emmanuel Perez** - *Initial work* - [EmmanuelPerezP](https://github.com/EmmanuelPerezP)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+agregar los demas
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc

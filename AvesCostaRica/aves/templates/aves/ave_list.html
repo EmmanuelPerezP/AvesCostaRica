@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="card-columns">
+      {% for ave in ave_list %}
+      <div class="card w-100" style="">
+        <img class="card-img-top img-responsive" src="{{ ave.image }}" alt="Imagen del Ave">
+        <div class="card-body">
+          <h1 class="card-text">{{ ave.name }}</h1>
+          <p class="card-text">
+            {{ ave.description }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

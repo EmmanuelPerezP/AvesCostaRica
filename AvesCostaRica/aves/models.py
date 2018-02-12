@@ -112,9 +112,13 @@ class Ave(models.Model):
     otherImages = models.ManyToManyField(Image)
     # descripcion del ave
     description = models.CharField(max_length=10000)
-
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         """
         Tira representando el model (util en /admin/)
         """
         return self.name
+
+    def getSummaryDescription(self):
+        return self.description[:300] + "..."

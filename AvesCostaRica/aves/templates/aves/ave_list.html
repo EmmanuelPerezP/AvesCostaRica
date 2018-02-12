@@ -6,19 +6,18 @@
 <div class="container">
   <div class="row">
 
-    <div class="card-columns">
       {% for ave in ave_list %}
-      <div class="card w-100" style="">
-        <img class="card-img-top img-responsive" src="{{ ave.image }}" alt="Imagen del Ave">
-        <div class="card-body">
-          <h1 class="card-text">{{ ave.name }}</h1>
-          <p class="card-text">
-            {{ ave.description }}
-          </p>
+      <div class="col-lg-4">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{{ ave.image }}" alt="Card image cap">
+          <div class="card-body">
+            <a href="{% url 'ave-detail' ave.id %}" ><h5 class="card-title">{{ ave.name }}</h5></a>
+            <p class="card-text">{{ ave.getSummaryDescription}}</p>
+            <p class="card-text"><small class="text-muted">Date created:  {{ave.dateCreated}}</small></p>
+          </div>
         </div>
       </div>
       {% endfor %}
-    </div>
   </div>
 </div>
 

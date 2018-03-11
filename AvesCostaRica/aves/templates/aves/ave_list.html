@@ -9,7 +9,7 @@
       {% for ave in ave_list %}
       <div class="col-lg-4">
         <div class="card mb-3">
-          <img class="card-img-top img-fluid" src="{{ ave.image }}" alt="Card image cap">
+          <img class="card-img-top img-fluid" src="{{ ave.mainImage.url }}" alt="Card image cap">
           <div class="card-body">
             <a href="{% url 'ave-detail' ave.id %}" ><h5 class="card-title">{{ ave.name }}</h5></a>
             <p class="card-text">{{ ave.getSummaryDescription}}</p>

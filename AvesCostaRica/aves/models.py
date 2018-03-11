@@ -6,6 +6,8 @@ class Clase(models.Model):
     clase representando una clase de ave
     """
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -20,6 +22,8 @@ class Orden(models.Model):
     """
     clase = models.ForeignKey(Clase, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -34,6 +38,8 @@ class Suborden(models.Model):
     """
     orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -48,6 +54,8 @@ class Familia(models.Model):
     """
     suborden = models.ForeignKey(Suborden, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -62,6 +70,8 @@ class Genero(models.Model):
     """
     familia = models.ForeignKey(Familia, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -77,6 +87,8 @@ class Especie(models.Model):
     """
     genero = models.ForeignKey(Genero, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """
@@ -85,11 +97,8 @@ class Especie(models.Model):
         return self.name
 
 
-class Image(models.Model):
-    """
-    tabla/modelo que guardara las imagenes
-    """
-    image = models.URLField()
+def directory_path_images(instance, filename):
+    return '{0}/{1}/{2}/{3}/{4}/{5}'.format(instance.clase, instance.orden, instance.suborden, instance.familia, instance.genero, filename)
 
 
 class Ave(models.Model):
@@ -106,14 +115,18 @@ class Ave(models.Model):
 
     # nombre comun
     name = models.CharField(max_length=100)
-    # la imagen es un url guardado en S3 o un droplet
-    image = models.URLField(default=None, blank=True)
+    # la imagen es un url guardado en S3, un droplet o el filesystem
+    # image = models.URLField(default=None, blank=True)
+    mainImage = models.ImageField(upload_to=directory_path_images)
+
     # coleccion de imagenes adicionales
-    otherImages = models.ManyToManyField(Image)
+    # otherImages = models.ManyToManyField(Image)
+
     # descripcion del ave
     description = models.CharField(max_length=10000)
     dateCreated = models.DateTimeField(auto_now_add=True)
-    
+    dateModified = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         """
         Tira representando el model (util en /admin/)
@@ -122,3 +135,13 @@ class Ave(models.Model):
 
     def getSummaryDescription(self):
         return self.description[:300] + "..."
+
+
+class Image(models.Model):
+    """
+    tabla/modelo que guardara las imagenes
+    """
+    Ave = models.ForeignKey(Ave, on_delete=models.CASCADE)
+    image = models.ImageField()
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True)

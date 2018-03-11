@@ -21,15 +21,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@%5hr)rul=fta+*zo$6isziphrbg&2pe6nc2u6nvx$%8sv^lh4'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-debugenv = os.environ.get('DJANGO_DEBUG', 'True')
-if debugenv == 'False':
-    DEBUG = False
-else:
-    DEBUG = True
-
-# DEBUG = True
+#
+# # SECURITY WARNING: don't run with debug turned on in production!
+# debugenv = os.environ.get('DJANGO_DEBUG', 'True')
+# if debugenv == 'False':
+#     DEBUG = False
+# else:
+#     DEBUG = True
+#
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.241.143.209', '127.0.0.1']
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -45,7 +45,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aves.apps.AvesConfig',
+    'django_extensions',
+    'rest_framework',
 ]
+
+# django_extensions graphic tool for database models check:
+# http://django-extensions.readthedocs.io/en/latest/graph_models.html
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,3 +136,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+MEDIA_ROOT = '/home/ema/source/AvesCostaRica/'
+MEDIA_URL = '/media/'

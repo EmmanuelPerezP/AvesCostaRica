@@ -16,9 +16,9 @@ class AveDetailView(DetailView):
     model = Ave
 
 
-class AvesList(generics.ListAPIView):
-    # como hacer un where para el orm de django
-    # https://docs.djangoproject.com/en/2.0/ref/models/querysets/#gt
-    # https://docs.djangoproject.com/en/2.0/topics/db/queries/#field-lookups
-    queryset = Ave.objects.filter(dateCreated__gt=4)
-    serializer_class = AveSerializer
+# class AvesList(generics.ListAPIView):
+#     # como hacer un where para el orm de django
+#     # https://docs.djangoproject.com/en/2.0/ref/models/querysets/#gt
+#     # https://docs.djangoproject.com/en/2.0/topics/db/queries/#field-lookups
+#     queryset = Ave.objects.filter(dateCreated__gt=4)
+#     serializer_class = AveSerializer

@@ -31,7 +31,7 @@ SECRET_KEY = '@%5hr)rul=fta+*zo$6isziphrbg&2pe6nc2u6nvx$%8sv^lh4'
 #
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.241.143.209', '127.0.0.1']
+ALLOWED_HOSTS = ['192.241.143.209', '127.0.0.1', 'avescostarica.site', 'www.avescostarica.site']
 # SECURITY WARNING: don't run with debug turned on in production!
 
 

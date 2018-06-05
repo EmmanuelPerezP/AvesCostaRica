@@ -10,7 +10,6 @@ class ImageInline(admin.TabularInline):
 class AveAdmin(admin.ModelAdmin):
     inlines = [ImageInline, ]
 
-
 admin.site.register(Ave, AveAdmin)
 admin.site.site_title = 'Aves Costa Rica'
 admin.site.site_header = 'Administracion de Aves'

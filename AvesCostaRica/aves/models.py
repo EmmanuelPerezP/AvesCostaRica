@@ -98,6 +98,9 @@ class Especie(models.Model):
 
 
 def directory_path_images(instance, filename):
+    """
+    Funcion que crea el filepath en el server donde se guardara la imagen
+    """
     return '{0}/{1}/{2}/{3}/{4}/{5}'.format(instance.clase, instance.orden, instance.suborden, instance.familia, instance.genero, filename)
 
 

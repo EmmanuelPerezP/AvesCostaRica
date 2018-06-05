@@ -21,9 +21,16 @@
       <ul>
         <li>Clase: {{ ave.clase }}</li>
         <li>Orden: {{ ave.orden }}</li>
-        <li>Suborden: {{ ave.suborden }}</li>
         <li>Familia: {{ ave.familia }}</li>
         <li>Genero: {{ ave.genero }}</li>
+        <li>Audio:
+          <br>
+          <br>
+          <audio controls>
+            <source src="{{ ave.mainAudio.url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+        </li>
       </ul>
     </div>
   </div>
@@ -42,29 +49,13 @@
 
   <div class="row">
 
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
+    {% for imagen in imagenes %}
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+          <img class="img-fluid" src="{{ imagen.image.url }}" alt="">
+        </a>
+      </div>
+    {% endfor %}
 
   </div>
   <!-- /.row -->

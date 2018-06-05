@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
-from aves.models import Ave
+from aves.models import Ave, Image
 from django.urls import reverse
 
 from aves.serializers import AveSerializer
@@ -14,6 +14,11 @@ class AveListView(ListView):
 
 class AveDetailView(DetailView):
     model = Ave
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['imagenes'] = Image.objects.filter(Ave=self.object.id)
+        return context
 
 
 class AvesList(generics.ListAPIView):

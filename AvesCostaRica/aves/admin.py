@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ave, Clase, Especie, Familia, Genero, Orden, Suborden, Image
+from .models import Ave, Clase, Especie, Familia, Genero, Orden, Image
 
 
 class ImageInline(admin.TabularInline):
@@ -18,5 +18,4 @@ admin.site.register(Especie)
 admin.site.register(Familia)
 admin.site.register(Genero)
 admin.site.register(Orden)
-admin.site.register(Suborden)
 admin.site.register(Image)

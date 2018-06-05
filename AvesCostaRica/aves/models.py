@@ -32,27 +32,27 @@ class Orden(models.Model):
         return self.name
 
 
-class Suborden(models.Model):
-    """
-    clase representando un suborden (debajo de orden)
-    """
-    orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
-    name = models.CharField(max_length=100)
-    dateCreated = models.DateTimeField(auto_now_add=True)
-    dateModified = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        """
-        Tira representando el model (util en /admin/)
-        """
-        return self.name
+# class Suborden(models.Model):
+#     """
+#     clase representando un suborden (debajo de orden)
+#     """
+#     orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
+#     name = models.CharField(max_length=100)
+#     dateCreated = models.DateTimeField(auto_now_add=True)
+#     dateModified = models.DateTimeField(auto_now=True)
+#
+#     def __str__(self):
+#         """
+#         Tira representando el model (util en /admin/)
+#         """
+#         return self.name
 
 
 class Familia(models.Model):
     """
     clase representando una familia (debajo de suborden)
     """
-    suborden = models.ForeignKey(Suborden, on_delete=models.PROTECT)
+    orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     dateCreated = models.DateTimeField(auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True)
@@ -101,7 +101,14 @@ def directory_path_images(instance, filename):
     """
     Funcion que crea el filepath en el server donde se guardara la imagen
     """
-    return '{0}/{1}/{2}/{3}/{4}/{5}'.format(instance.clase, instance.orden, instance.suborden, instance.familia, instance.genero, filename)
+    return 'images/{0}/{1}/{2}/{3}/{4}'.format(instance.clase, instance.orden, instance.familia, instance.genero, filename)
+
+
+def directory_path_audio(instance, filename):
+    """
+    Funcion que crea el filepath en el server donde se guardara la imagen
+    """
+    return 'audio/{0}/{1}/{2}/{3}/{4}'.format(instance.clase, instance.orden, instance.familia, instance.genero, filename)
 
 
 class Ave(models.Model):
@@ -112,7 +119,6 @@ class Ave(models.Model):
 
     clase = models.ForeignKey(Clase, on_delete=models.PROTECT)
     orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
-    suborden = models.ForeignKey(Suborden, on_delete=models.PROTECT)
     familia = models.ForeignKey(Familia, on_delete=models.PROTECT)
     genero = models.ForeignKey(Genero, on_delete=models.PROTECT)
 
@@ -121,6 +127,7 @@ class Ave(models.Model):
     # la imagen es un url guardado en S3, un droplet o el filesystem
     # image = models.URLField(default=None, blank=True)
     mainImage = models.ImageField(upload_to=directory_path_images)
+    mainAudio = models.FileField(upload_to=directory_path_images, blank=True, null=True)
 
     # coleccion de imagenes adicionales
     # otherImages = models.ManyToManyField(Image)

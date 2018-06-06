@@ -7,7 +7,7 @@ class AveSerializer(serializers.ModelSerializer):
     # http://www.django-rest-framework.org/api-guide/relations/
     class Meta:
         model = Ave
-        fields = ('id', 'clase', 'orden', 'familia', 'genero', 'name',
+        fields = ('id', 'clase', 'orden', 'familia', 'genero', 'especie', 'name',
                   'mainImage', 'mainAudio', 'description', 'dateCreated',
                   'dateModified')
 

@@ -121,7 +121,7 @@ class Ave(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.PROTECT)
     familia = models.ForeignKey(Familia, on_delete=models.PROTECT)
     genero = models.ForeignKey(Genero, on_delete=models.PROTECT)
-
+    especie = models.ForeignKey(Especie, on_delete=models.PROTECT)
     # nombre comun
     name = models.CharField(max_length=100)
     # la imagen es un url guardado en S3, un droplet o el filesystem

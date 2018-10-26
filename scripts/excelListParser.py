@@ -77,11 +77,10 @@ for i in st.index:
         Nombre Espa: {nombreEsp}
         Estatus: {estatus}
         -------------------------------------------------------""")
-        # get request
-        # API
+        # get request for wikipedia API
         # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
         r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
-        # Wait for 6 miliseconds (200 request/s limit)
+        # Wait for 6 miliseconds (200 request/s limit, 1/200)
         time.sleep(0.006)
         print(r.json()["items"][0]["original"]["source"])
 

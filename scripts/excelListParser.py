@@ -2,6 +2,20 @@ import pandas as pd
 import numpy as np
 import math as mth
 import os
+import requests
+import shutil
+import time
+
+# copy images to harddrive
+# r = requests.get(settings.STATICMAP_URL.format(**data), stream=True)
+# if r.status_code == 200:
+#     with open(path, 'wb') as f:
+#         r.raw.decode_content = True
+#         shutil.copyfileobj(r.raw, f) 
+
+
+
+
 
 script_directory = os.path.split(os.path.abspath(__file__))[0]
 print(script_directory)
@@ -63,6 +77,13 @@ for i in st.index:
         Nombre Espa: {nombreEsp}
         Estatus: {estatus}
         -------------------------------------------------------""")
+        # get request
+        # API
+        # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
+        r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
+        # Wait for 6 miliseconds (200 request/s limit)
+        time.sleep(0.006)
+        print(r.json()["items"][0]["original"]["source"])
 
 
 

@@ -5,6 +5,7 @@ import os
 import requests
 import shutil
 import time
+import sys
 
 # copy images to harddrive
 # r = requests.get(settings.STATICMAP_URL.format(**data), stream=True)
@@ -76,13 +77,32 @@ for i in st.index:
         Nombre Ingles: {nombreIngles}
         Nombre Espa: {nombreEsp}
         Estatus: {estatus}
-        -------------------------------------------------------""")
+        Total: {i} out of {st.index.size} ({(100/st.index.size) * i:.2f}%)""")
         # get request for wikipedia API
         # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
         r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
+        xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
         # Wait for 6 miliseconds (200 request/s limit, 1/200)
         time.sleep(0.006)
-        print(r.json()["items"][0]["original"]["source"])
+        try:
+            imageUrl = r.json()["items"][0]["original"]["source"]
+            print(f"""
+        Image URL: {imageUrl}
+        """)
+        except:
+            print("there is no picture")
+
+        try:
+            recording = xeno.json()["recordings"][0]
+            print(f"""
+        Recording: {recording['url']}
+        Quality: {recording["q"]}
+            """)
+        except:
+            print("theres no recordings or error")
+        
+        print("""
+        -------------------------------------------------------""")
 
 
 

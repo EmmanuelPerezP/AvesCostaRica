@@ -162,6 +162,14 @@ class Favorites(models.Model):
     """
     Ave = models.ForeignKey(Ave, on_delete=models.CASCADE)
 
+
+def directory_path_images_field_guide(instance, filename):
+    """
+    Funcion que crea el filepath en el server donde se guardara la imagen
+    """
+    return 'fieldguide/{0}/{1}'.format(instance.name, filename)
+
+
 class FieldGuide(models.Model):
     """
     Guias de Campo
@@ -169,13 +177,11 @@ class FieldGuide(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=10000)
     aves = models.ManyToManyField(Ave)
+    mainImage = models.ImageField(upload_to=directory_path_images_field_guide)
 
     def __str__(self):
         """
         Tira representando el model (util en /admin/)
         """
         return self.name
-
-
-
 

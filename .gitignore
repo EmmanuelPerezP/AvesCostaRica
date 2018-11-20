@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+AvesCostaRica/db.sqlite3
 # django stuff
 *.log
 *.pot

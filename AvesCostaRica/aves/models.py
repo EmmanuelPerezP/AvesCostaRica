@@ -155,3 +155,21 @@ class Image(models.Model):
     image = models.ImageField()
     dateCreated = models.DateTimeField(auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True)
+
+class Favorites(models.Model):
+    """
+    modelo para la app escrita en react-native
+    """
+    Ave = models.ForeignKey(Ave, on_delete=models.CASCADE)
+
+class FieldGuide(models.Model):
+    """
+    Guias de Campo
+    """
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=10000)
+    aves = models.ManyToManyField(Ave)
+
+
+
+

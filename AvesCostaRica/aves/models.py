@@ -170,6 +170,12 @@ class FieldGuide(models.Model):
     description = models.CharField(max_length=10000)
     aves = models.ManyToManyField(Ave)
 
+    def __str__(self):
+        """
+        Tira representando el model (util en /admin/)
+        """
+        return self.name
+
 
 
 

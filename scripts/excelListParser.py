@@ -78,13 +78,14 @@ for i in st.index:
         Nombre Espa: {nombreEsp}
         Estatus: {estatus}
         Total: {i} out of {st.index.size} ({(100/st.index.size) * i:.2f}%)""")
-        # get request for wikipedia API
-        # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
-        r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
-        xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
         # Wait for 6 miliseconds (200 request/s limit, 1/200)
-        time.sleep(0.006)
+        # Wait for 10 miliseconds (200 request/s limit, 1/200)
+        xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
+        time.sleep(0.1)
         try:
+            # get request for wikipedia API
+            # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
+            r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
             imageUrl = r.json()["items"][0]["original"]["source"]
             print(f"""
         Image URL: {imageUrl}
@@ -93,12 +94,14 @@ for i in st.index:
             print("there is no picture")
 
         try:
+            # xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
             recording = xeno.json()["recordings"][0]
             print(f"""
         Recording: {recording['url']}
         Quality: {recording["q"]}
-            """)
-        except:
+        """)
+        except Exception as ex:
+            print(ex)
             print("theres no recordings or error")
         
         print("""

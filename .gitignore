@@ -16,3 +16,5 @@ eb-virt/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 MyBlog/settings_dev.py
+
+images/

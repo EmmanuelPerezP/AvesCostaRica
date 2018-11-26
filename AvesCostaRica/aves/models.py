@@ -124,6 +124,7 @@ class Ave(models.Model):
     especie = models.ForeignKey(Especie, on_delete=models.PROTECT)
     # nombre comun
     name = models.CharField(max_length=100)
+    taxa = models.CharField(max_length=100)
     # la imagen es un url guardado en S3, un droplet o el filesystem
     # image = models.URLField(default=None, blank=True)
     mainImage = models.ImageField(upload_to=directory_path_images)

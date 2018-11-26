@@ -8,7 +8,7 @@ class AveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ave
         fields = ('id', 'clase', 'orden', 'familia', 'genero', 'especie', 'name',
-                  'mainImage', 'mainAudio', 'description', 'dateCreated',
+                  'mainImage', 'mainAudio', 'description', 'dateCreated', 'taxa'
                   'dateModified')
 
 

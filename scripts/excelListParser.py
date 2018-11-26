@@ -7,31 +7,38 @@ import shutil
 import time
 import sys
 
-# copy images to harddrive
-# r = requests.get(settings.STATICMAP_URL.format(**data), stream=True)
-# if r.status_code == 200:
-#     with open(path, 'wb') as f:
-#         r.raw.decode_content = True
-#         shutil.copyfileobj(r.raw, f) 
 
+# setup django env to use the ORM and django functions
+# https://stackoverflow.com/questions/8047204/django-script-to-access-model-objects-without-using-manage-py-shell?answertab=active#tab-top
+import django
 
+sys.path.append('../AvesCostaRica')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'AvesCostaRica.settings'
+django.setup()
 
+# import models from django ORM
+from aves.models import Ave, Clase, Orden, Familia, Genero, Especie
 
-
+# get the absolute path of the excel file for panda
 script_directory = os.path.split(os.path.abspath(__file__))[0]
 print(script_directory)
 abs_filename = os.path.join(script_directory, "lista-julio-18.xlsx")
 
-
-
+# load the excel file
 # xls = pd.ExcelFile("../lista-julio-18.xlsx")
 xls = pd.ExcelFile(abs_filename)
-
+# parse the file
 st = xls.parse(0) #0 is the sheet number
 
-print("Column headings:")
-print(st.columns)
-print(st.index)
+# print("Column headings:")
+# print(st.columns)
+# print(st.index)
+
+# to save using requests
+# https://stackoverflow.com/a/14962401/4753270
+# https://stackoverflow.com/questions/4258605/django-manually-create-imagefield-in-model-from-existing-file-on-server?answertab=votes#tab-top
+# https://stackoverflow.com/questions/1308386/programmatically-saving-image-to-django-imagefield
+# http://docs.python-requests.org/en/master/user/quickstart/#binary-response-content
 
 
 orden = ""
@@ -63,7 +70,6 @@ for i in st.index:
 
     if pd.notnull(estatusTemp):
         estatus = estatusTemp
-
 
     if pd.notnull(nombreInglesTemp):
         nombreIngles = nombreInglesTemp

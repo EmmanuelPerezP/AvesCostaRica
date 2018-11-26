@@ -80,20 +80,23 @@ for i in st.index:
         Total: {i} out of {st.index.size} ({(100/st.index.size) * i:.2f}%)""")
         # Wait for 6 miliseconds (200 request/s limit, 1/200)
         # Wait for 10 miliseconds (200 request/s limit, 1/200)
-        xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
         time.sleep(0.1)
         try:
             # get request for wikipedia API
             # https://en.wikipedia.org/api/rest_v1/#!/Page_content/get_page_media_title_revision
-            r = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
-            imageUrl = r.json()["items"][0]["original"]["source"]
+            imageRequest = requests.get(f'https://es.wikipedia.org/api/rest_v1/page/media/{taxa.replace(" ","_")}')
+            descriptionRequest = requests.get(f'https://es.wikipedia.org/api/rest_v1/page/summary/{taxa.replace(" ","_")}')
+            imageUrl = imageRequest.json()["items"][0]["original"]["source"]
+            description = descriptionRequest.json()["extract"]
             print(f"""
         Image URL: {imageUrl}
+        Description: {description}
         """)
         except:
             print("there is no picture")
 
         try:
+            xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
             # xeno = requests.get(f'https://www.xeno-canto.org/api/2/recordings?query={taxa.replace(" ","%20")}')
             recording = xeno.json()["recordings"][0]
             print(f"""
